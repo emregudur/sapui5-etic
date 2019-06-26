@@ -1,0 +1,101 @@
+<mvc:View
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	controllerName="sap.ui.demo.basicTemplate.controller.Home"
+	xmlns="sap.m">
+	<SplitApp id="SplitAppDemo" initialDetail="detail" initialMaster="master" orientationChange="onOrientationChange">
+		<detailPages>
+			<Page id="detail" title="Anasayfa" class="sapUiStdPage">
+
+				<headerContent>
+					<HBox id="headerButtons">
+						<Button icon="sap-icon://visits" tooltip="Login" press="loginStart" custom:key="loginButton" />
+						<Button icon="sap-icon://log" tooltip="Logout" press="logOut" custom:key="logOutButton"/>
+						<Button icon="sap-icon://cart" tooltip="" press="openCart" />
+						<Button text="X" press="startProductAdd" custom:key="getHomePageList"/>
+					</HBox>
+				</headerContent>
+				<content>
+					<List>
+						<CustomListItem>
+							<VBox class="sapUiSmallMarginTop sapUiSmallMarginBottom sapUiSmallMarginBegin" id="listHomePage" items="{path:'/deneme'}">
+								<HBox class="sapUiSmallMarginBegin">
+									<VBox>
+										<Image custom:key="{p_id}" src="data:image/png;base64,{srcImg}"
+											decorative="false"
+											width="170px"
+											densityAware="false" press="imgPressEvents">
+										</Image>
+										<Title text="{p_name}"/>
+										<Text text="{p_title}"/>
+										<Text text="Fiyat: {p_price}"/>
+										<Button icon="sap-icon://cart" press="addCart" custom:key="{p_id}"/>
+									</VBox>
+								</HBox>
+							</VBox>
+						</CustomListItem>
+					</List>
+				</content>
+
+			</Page>
+			<Page id="detailDetail" title="Detail Detail" class="sapUiStdPage" showNavButton="true"
+					navButtonText="Back" navButtonPress="onPressDetailBack">
+				<content>
+					<List>
+						<CustomListItem>
+							<VBox class="sapUiSmallMarginTop sapUiSmallMarginBottom sapUiSmallMarginBegin" id="listDetailPage" items="{path:'/p_detail'}">
+								<HBox class="sapUiSmallMarginBegin">
+									<VBox>
+										<Image custom:key="{p_id}" src="data:image/png;base64,{srcImg}"
+											decorative="false"
+											width="170px"
+											densityAware="false">
+										</Image>
+										<Title text="{p_name}"/>
+										<Text text="{p_title}"/>
+										<Text text="{p_text}"/>
+										<Text text="Fiyat: {p_price}"/>
+									</VBox>
+								</HBox>
+							</VBox>
+						</CustomListItem>
+					</List>
+				</content>
+			</Page>
+		</detailPages>
+		<masterPages>
+			<Page id="master" title="Kategoriler" icon="sap-icon://doctor"  class="sapUiStdPage">
+				<content>
+					<List>
+						<items>
+							<StandardListItem title="Elektronik" type="Navigation" press="onPressGoToMaster"/>
+							<StandardListItem title="Ev Eşyaları" type="Navigation" press="onPressGoToMaster2"/>
+						</items>
+					</List>
+				</content>
+			</Page>
+			<Page id="master2" title="Elektronik Cihazlar" icon="sap-icon://doctor" class="sapUiStdPage" showNavButton="true"
+					navButtonPress="onPressMasterBack">
+				<content>
+					<List itemPress="onListItemPress">
+						<items>
+							<StandardListItem title="Telefon" type="Active" custom:to="detail" custom:key="el1"/>
+							<StandardListItem title="Bilgisayar" type="Active" custom:to="detail" custom:key="el2"/>
+						</items>
+					</List>
+				</content>
+			</Page>
+			<Page id="master3" title="Ev Eşyaları" icon="sap-icon://doctor" class="sapUiStdPage" showNavButton="true"
+					navButtonPress="onPressMasterBack">
+				<content>
+					<List itemPress="onListItemPress">
+						<items>
+							<StandardListItem title="Süs eşyaları" type="Active" custom:to="detail" custom:key="ev1"/>
+							<StandardListItem title="Bitkiler" type="Active" custom:to="detail" custom:key="ev2"/>
+						</items>
+					</List>
+				</content>
+			</Page>
+		</masterPages>
+	</SplitApp>
+</mvc:View>

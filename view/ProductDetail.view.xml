@@ -1,0 +1,9 @@
+<mvc:View
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	controllerName="sap.ui.demo.basicTemplate.controller.ProductDetail"
+	xmlns="sap.m">
+	<Page>
+		
+	</Page>
+</mvc:View>

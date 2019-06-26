@@ -1,0 +1,101 @@
+<mvc:View
+xmlns:mvc="sap.ui.core.mvc"
+xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+controllerName="sap.ui.demo.basicTemplate.controller.Admin"
+xmlns="sap.m">
+<SplitApp id="SplitAppDemo" initialDetail="detail" initialMaster="master" orientationChange="onOrientationChange">
+	<detailPages>
+		<Page id="_productAdd" title="Ürün" class="sapUiStdPage">
+			<headerContent>
+				<HBox id="headerButtons">
+					<Button icon="sap-icon://log" tooltip="Logout" press="logOut"/>
+				</HBox>
+			</headerContent>
+			<content>
+				<List>
+					<CustomListItem>
+						<VBox class="sapUiSmallMarginTop sapUiSmallMarginBottom sapUiSmallMarginBegin" id="listHomePage" >
+							<HBox class="sapUiSmallMarginBegin">
+								<VBox>
+									<Button text="Ürün eklemek için tıklayın" press="startProductAdd"/>	
+								</VBox>
+							</HBox>
+						</VBox>
+					</CustomListItem>
+				</List>
+				<List>
+					<CustomListItem>
+						<VBox class="sapUiSmallMarginTop sapUiSmallMarginBottom sapUiSmallMarginBegin" id="listAdminPage" items="{path:'/adminPList'}">
+							<HBox class="sapUiSmallMarginBegin">
+								<HBox>
+									<Title text="{p_name}"/>
+									<Text text="---"/>
+									<Text text="{p_title}"/>
+									<Text text="---"/>
+									<Text text="Fiyat: {p_price}"/>
+									<Text text="---"/>
+									<Button press="removeProduct" text="sil" custom:key="{id}"/>
+								</HBox>
+							</HBox>
+						</VBox>
+					</CustomListItem>
+				</List>
+			</content>
+		</Page>
+		<Page id="_userAdd" title="Anasayfa" class="sapUiStdPage2">
+			<headerContent>
+				<HBox>
+					<Button icon="sap-icon://log" />
+					<Button icon="sap-icon://visits"/>
+				</HBox>
+			</headerContent>
+			<content>
+				<List>
+					<CustomListItem>
+						<VBox class="sapUiSmallMarginTop sapUiSmallMarginBottom sapUiSmallMarginBegin" id="listHomePage2" >
+							<HBox class="sapUiSmallMarginBegin">
+								<VBox>	
+									<Button text="Kullanıcı eklemek için tıklayın" press="startUserAdd"/>	
+								</VBox>
+							</HBox>
+						</VBox>
+					</CustomListItem>
+				</List>
+				<List>
+					<CustomListItem>
+						<VBox class="sapUiSmallMarginTop sapUiSmallMarginBottom sapUiSmallMarginBegin" id="adminPageUserList" items="{path:'/adminPageUserList'}">
+							<HBox class="sapUiSmallMarginBegin">
+								<HBox>
+									<Title text="{user_name}"/>
+									<Text text="---"/>
+									<Text text="{user_surname}"/>
+									<Text text="---"/>
+									<Text text="{user_idName}"/>
+									<Text text="---"/>
+									<Button press="removeUser" text="sil" custom:key="{id}"/>
+								</HBox>
+							</HBox>
+						</VBox>
+					</CustomListItem>
+				</List>
+			</content>
+		</Page>
+		<Page id="detailDetail" title="Detail Detail" class="sapUiStdPage">
+			<content>
+			</content>
+		</Page>
+	</detailPages>
+	<masterPages>
+		<Page id="master2" title="Elektronik Cihazlar" class="sapUiStdPage">
+			<content>
+				<List itemPress="onListItemPress">
+					<items>
+						<StandardListItem title="Kullanıcı Ekleme" type="Active" custom:to="userAdd" custom:key="_userAdd"/>
+						<StandardListItem title="Ürün Ekleme" type="Active" custom:to="productAdd" custom:key="_productAdd"/>
+					</items>
+				</List>
+			</content>
+		</Page>
+	</masterPages>
+</SplitApp>
+</mvc:View>
